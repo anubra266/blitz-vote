@@ -1,5 +1,7 @@
-export const presets = (brand) => {
-  const colors = {
+import { Colors } from "./colors"
+
+export const presets = (brand: string) => {
+  const colors: Colors = {
     default: {
       50: "#ecefff",
       100: "#cbceeb",

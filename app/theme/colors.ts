@@ -1,4 +1,5 @@
-const colors = {
+export type Colors = { [key: string]: { [key: number]: string } }
+const colors: Colors = {
   brand: {
     50: "#eaecff",
     100: "#c5caf0",

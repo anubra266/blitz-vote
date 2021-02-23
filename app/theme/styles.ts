@@ -1,7 +1,7 @@
 import { mode } from "@chakra-ui/theme-tools"
 
 const styles = {
-  global: (props) => ({
+  global: (props: any) => ({
     body: {
       fontFamily: "body",
       color: mode("gray.800", "whiteAlpha.900")(props),
