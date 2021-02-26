@@ -1,14 +1,11 @@
 import { BlitzPage } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { Box } from "@chakra-ui/react"
-
-
+import { Box, Heading } from "@chakra-ui/react"
 
 const Home: BlitzPage = () => {
-
   return (
-    <Box>
-
+    <Box layerStyle="card" shadow="base" rounded="md" mx={3} mt={5} p={4}>
+      <Heading>Home</Heading>
     </Box>
   )
 }

@@ -1,3 +1,4 @@
+import { FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react"
 import { forwardRef, PropsWithoutRef } from "react"
 import { useField } from "react-final-form"
 
@@ -8,11 +9,12 @@ export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElem
   label: string
   /** Field type. Doesn't include radio buttons and checkboxes */
   type?: "text" | "password" | "email" | "number"
+  isRequired?: boolean
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
 }
 
 export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldProps>(
-  ({ name, label, outerProps, ...props }, ref) => {
+  ({ name, label, outerProps, isRequired, ...props }, ref) => {
     const {
       input,
       meta: { touched, error, submitError, submitting },
@@ -21,37 +23,14 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
     })
 
     const normalizedError = Array.isArray(error) ? error.join(", ") : error || submitError
-
+    const isInvalid = touched && normalizedError
     return (
-      <div {...outerProps}>
-        <label>
-          {label}
-          <input {...input} disabled={submitting} {...props} ref={ref} />
-        </label>
+      <FormControl isInvalid={isInvalid} {...outerProps} isRequired={isRequired}>
+        <FormLabel fontWeight="bold">{label}</FormLabel>
+        <Input focusBorderColor="brand.300" {...input} disabled={submitting} {...props} ref={ref} />
 
-        {touched && normalizedError && (
-          <div role="alert" style={{ color: "red" }}>
-            {normalizedError}
-          </div>
-        )}
-
-        <style jsx>{`
-          label {
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            font-size: 1rem;
-          }
-          input {
-            font-size: 1rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            border: 1px solid purple;
-            appearance: none;
-            margin-top: 0.5rem;
-          }
-        `}</style>
-      </div>
+        {isInvalid && <FormErrorMessage> {normalizedError}</FormErrorMessage>}
+      </FormControl>
     )
   }
 )

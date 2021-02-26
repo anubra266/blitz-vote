@@ -1,5 +1,5 @@
 import { BlitzPage, useRouterQuery, Link, useMutation } from "blitz"
-import Layout from "app/core/layouts/Layout"
+import AuthLayout from "app/core/layouts/AuthLayout"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { Form, FORM_ERROR } from "app/core/components/Form"
 import { ResetPassword } from "app/auth/validations"
@@ -54,6 +54,6 @@ const ResetPasswordPage: BlitzPage = () => {
 }
 
 ResetPasswordPage.redirectAuthenticatedTo = "/"
-ResetPasswordPage.getLayout = (page) => <Layout title="Reset Your Password">{page}</Layout>
+ResetPasswordPage.getLayout = (page) => <AuthLayout title="Reset Your Password">{page}</AuthLayout>
 
 export default ResetPasswordPage

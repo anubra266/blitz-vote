@@ -11,7 +11,7 @@ const Layout = ({ title, children }: LayoutProps) => {
   return (
     <>
       <Head>
-        <title>{title || "Blote"}</title>
+        <title>{title || process.env.siteName}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />

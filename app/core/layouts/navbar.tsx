@@ -63,9 +63,11 @@ const Navbar = () => {
   }
 
   return (
-    <chakra.header pos="sticky">
-      <Flex p={5}>
-        <Heading size="lg">Blote</Heading>
+    <chakra.header pos="sticky" layerStyle="card" shadow="base">
+      <Flex px={5} py={2}>
+        <Heading size="lg" alignSelf="center" textTransform="capitalize">
+          {process.env.siteName}
+        </Heading>
         <Spacer />
         <IconButton
           aria-label="Open Mobile Menu"

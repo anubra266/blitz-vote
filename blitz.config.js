@@ -1,6 +1,12 @@
 const { sessionMiddleware, simpleRolesIsAuthorized } = require("@blitzjs/server")
 
 module.exports = {
+  env: {
+    siteName: "Blote",
+  },
+  experimental: {
+    reactMode: "legacy",
+  },
   middleware: [
     sessionMiddleware({
       isAuthorized: simpleRolesIsAuthorized,

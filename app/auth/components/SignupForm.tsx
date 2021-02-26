@@ -1,8 +1,10 @@
-import { useMutation } from "blitz"
+import { Link, useMutation } from "blitz"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { Form, FORM_ERROR } from "app/core/components/Form"
 import signup from "app/auth/mutations/signup"
 import { Signup } from "app/auth/validations"
+import AuthForm from "./AuthForm"
+import { Box } from "@chakra-ui/react"
 
 type SignupFormProps = {
   onSuccess?: () => void
@@ -12,9 +14,7 @@ export const SignupForm = (props: SignupFormProps) => {
   const [signupMutation] = useMutation(signup)
 
   return (
-    <div>
-      <h1>Create an Account</h1>
-
+    <AuthForm title="Create an Account">
       <Form
         submitText="Create Account"
         schema={Signup}
@@ -36,7 +36,10 @@ export const SignupForm = (props: SignupFormProps) => {
         <LabeledTextField name="email" label="Email" placeholder="Email" />
         <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
       </Form>
-    </div>
+      <Box mt={4} fontSize="sm">
+        Or <Link href="/login">Login</Link>
+      </Box>
+    </AuthForm>
   )
 }
 
